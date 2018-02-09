@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="js/popup.js"></script>
+  <script src="js/streak_voice_texts.js"></script>
+
+  <style>
+    body {
+      background-color: #f8f3e0;
+    }
+
+    #streak_voice_texts {
+      background-color: cornflowerblue;
+      color: #f7f7f7;
+    }
+
+    .hidden {
+      position: absolute;
+      left: -1000px;
+      top: -1000px;
+    }
+  </style>
+</head>
+
+<body>
+
+<div>
+  <label for="text_area">Text</label>
+  <textarea id="text_area" name="text_area" cols="50" rows="10"></textarea>
+</div>
+
+<div>
+  <button id="streak_voice_texts">Send Texts</button>
+</div>
+
+
+<div id="buttons" class="hidden">
+  <br>
+  <hr>
+  <br>
+
+  <div>
+    <button id="formal">        Formal Name</button>
+    <button id="first">         First Name</button>
+    <button id="last">          Last Name</button>
+    <button id="licensed_call"> Licensed Call</button>
+    <button id="family_1">      Family 1</button>
+    <button id="family_2">      Family 2</button>
+    <button id="family_3">      Family 3</button>
+  </div>
+</div>
+
+
+</body>
+</html>
