@@ -64,10 +64,17 @@
         } else if (response.result === 'success') {
           
           chrome.tabs.query({currentWindow: true}, tabs => {
+            let tab_id;
             for (let i = 0; i < tabs.length; i++) {
               if (tabs[i].url.startsWith('https://www.google.com/voice')) {
-                sendTexts(response.peeps, tabs[i].id);
+                tab_id = tabs[i].id;
               }
+            }
+            
+            if (tab_id) {
+              sendTexts(response.peeps, tab_id);
+            } else {
+              notifyError('Open Legacy Google Voice in this window');
             }
           });
           

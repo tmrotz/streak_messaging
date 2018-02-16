@@ -14,14 +14,17 @@ const TEXT_COMMAND = 'text';
 const PEEPS_COMMAND = 'get_peeps';
 
 function insertText(text) {
-  const textarea = document.getElementById('text_area');
+  const text_area = document.getElementById('text_area');
   
-  let startPos = textarea.selectionStart;
-  let endPos = textarea.selectionEnd;
+  let startPos = text_area.selectionStart;
+  let endPos = text_area.selectionEnd;
   
-  textarea.value = textarea.value.substring(0, startPos)
+  text_area.value = text_area.value.substring(0, startPos)
     + text
-    + textarea.value.substring(endPos, textarea.value.length);
+    + text_area.value.substring(endPos, text_area.value.length);
+  
+  
+  chrome.storage.local.set({ 'text_area_value': text_area.value });
 }
 
 
@@ -81,20 +84,6 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('buttons').classList.add('hidden');
   });
   text_area.addEventListener('keypress', () => {
-    const text_area = document.getElementById('text_area');
-    chrome.storage.local.set({ 'text_area_value': text_area.value }, () => {
-      TEXT_AREA_VALUE = text_area.value;
-    });
-  });
-  
-  addEventListener('unload', () => {
-    const text_area = document.getElementById('text_area');
-    chrome.storage.local.set({ 'text_area_value': text_area.value }, () => {
-      TEXT_AREA_VALUE = text_area.value;
-    });
-  });
-  
-  window.addEventListener('unload', () => {
     const text_area = document.getElementById('text_area');
     chrome.storage.local.set({ 'text_area_value': text_area.value }, () => {
       TEXT_AREA_VALUE = text_area.value;
