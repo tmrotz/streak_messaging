@@ -59,7 +59,7 @@
       chrome.tabs.sendMessage(tab.id, {command: PEEPS_COMMAND}, response => {
         
         if (!response) {
-          notifyError('Reload page and try again');
+          notifyError('Reload GMail/Streak page and try again');
           
         } else if (response.result === 'success') {
           
@@ -72,6 +72,7 @@
             }
             
             if (tab_id) {
+              notifyNotice(`Sending ${response.peeps.length} text message(s)`, 5 * SECOND);
               sendTexts(response.peeps, tab_id);
             } else {
               notifyError('Open Legacy Google Voice in this window');
@@ -114,7 +115,7 @@
           return;
         }
         
-        i = index + 1;
+        i = index;
       }
     }
     
