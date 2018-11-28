@@ -1,12 +1,9 @@
 
 const VALID_VALUES = [
-  'formal_name',
+  'district',
+  'title',
   'first_name',
   'last_name',
-  'licensed_call',
-  'family_1',
-  'family_2',
-  'family_3',
 ];
 const SECOND = 1000;
 let TEXT_AREA_VALUE = '';
@@ -64,26 +61,17 @@ function insertText(text) {
 
 
 document.addEventListener('DOMContentLoaded', () => {
-  document.getElementById('formal').addEventListener('click', () => {
-    insertText('${formal_name}');
+  document.getElementById('district').addEventListener('click', () => {
+    insertText('${district}');
+  });
+  document.getElementById('title').addEventListener('click', () => {
+    insertText('${title}');
   });
   document.getElementById('first').addEventListener('click', () => {
     insertText('${first_name}');
   });
   document.getElementById('last').addEventListener('click', () => {
     insertText('${last_name}');
-  });
-  document.getElementById('licensed_call').addEventListener('click', () => {
-    insertText('${licensed_call}');
-  });
-  document.getElementById('family_1').addEventListener('click', () => {
-    insertText('${family_1}');
-  });
-  document.getElementById('family_2').addEventListener('click', () => {
-    insertText('${family_2}');
-  });
-  document.getElementById('family_3').addEventListener('click', () => {
-    insertText('${family_3}');
   });
   
   const text_area = document.getElementById('text_area');

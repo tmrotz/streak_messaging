@@ -37,12 +37,21 @@
       
       
       // Formal Name
-      let row_col = row + '_' + columns['Formal Name'];
-      const formal_name_element = document.querySelector(`div[cellposition='${row_col}']`);
-      if (!formal_name_element) {
-        throw new Error('Did not find \'Formal Name\' column.');
+      let row_col = row + '_' + columns['District'];
+      const district_element = document.querySelector(`div[cellposition='${row_col}']`);
+      if (!district_element) {
+        throw new Error('Did not find \'District\' column.');
       }
-      const formal_name = formal_name_element.textContent;
+      const district = district_element.textContent;
+      
+      
+      // Formal Name
+      row_col = row + '_' + columns['Title'];
+      const title_element = document.querySelector(`div[cellposition='${row_col}']`);
+      if (!title_element) {
+        throw new Error('Did not find \'Title\' column.');
+      }
+      const title = title_element.textContent;
       
       
       // First Name
@@ -61,8 +70,8 @@
         throw new Error('Did not find \'Last Name\' column.');
       }
       const last_name = last_name_element.textContent;
-    
-      
+
+
       // Cell Phone
       row_col = row + '_' + columns['Cell Phone'];
       const cell_phone_element = document.querySelector(`div[cellposition='${row_col}']`);
@@ -70,53 +79,14 @@
         throw new Error('Did not find \'Cell Phone\' column.');
       }
       const cell_phone = cell_phone_element.textContent;
-  
-  
-      // Licensed Call
-      row_col = row + '_' + columns['Licensed Call'];
-      const licensed_call_element = document.querySelector(`div[cellposition='${row_col}']`);
-      if (!licensed_call_element) {
-        throw new Error('Did not find \'Licensed Call\' column.');
-      }
-      const licensed_call = licensed_call_element.textContent;
-  
-  
-      // Family 1
-      row_col = row + '_' + columns['Family 1'];
-      const family_1_element = document.querySelector(`div[cellposition='${row_col}']`);
-      if (!family_1_element) {
-        throw new Error('Did not find \'Family 1\' column.');
-      }
-      const family_1 = family_1_element.textContent;
-  
-      
-      // Family 2
-      row_col = row + '_' + columns['Family 1'];
-      const family_2_element = document.querySelector(`div[cellposition='${row_col}']`);
-      if (!family_2_element) {
-        throw new Error('Did not find \'Family 2\' column.');
-      }
-      const family_2 = family_1_element.textContent;
-  
-  
-      // Family 3
-      row_col = row + '_' + columns['Family 1'];
-      const family_3_element = document.querySelector(`div[cellposition='${row_col}']`);
-      if (!family_3_element) {
-        throw new Error('Did not find \'Family 3\' column.');
-      }
-      const family_3 = family_1_element.textContent;
       
       
       peeps.push({
-        formal_name: formal_name,
-        first_name: first_name,
-        last_name: last_name,
-        cell_phone: cell_phone,
-        licensed_call: licensed_call,
-        family_1: family_1,
-        family_2: family_2,
-        family_3: family_3,
+        district,
+        title,
+        first_name,
+        last_name,
+        cell_phone
       });
     }
     

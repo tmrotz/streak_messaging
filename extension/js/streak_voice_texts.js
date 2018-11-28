@@ -16,13 +16,10 @@
     }
     
     let text = vanilla_text;
-    text = text.replace(/\${formal_name}/g,     peep.formal_name);
-    text = text.replace(/\${first_name}/g,      peep.first_name);
-    text = text.replace(/\${last_name}/g,       peep.last_name);
-    text = text.replace(/\${licensed_call}/g,   peep.licensed_call);
-    text = text.replace(/\${family_1}/g,        peep.family_1);
-    text = text.replace(/\${family_2}/g,        peep.family_2);
-    text = text.replace(/\${family_3}/g,        peep.family_3);
+    text = text.replace(/\${district}/g,    peep.district);
+    text = text.replace(/\${title}/g,       peep.title);
+    text = text.replace(/\${first_name}/g,  peep.first_name);
+    text = text.replace(/\${last_name}/g,   peep.last_name);
     
     const phone = peep.cell_phone.replace(/[^0-9]/g, '');
     
