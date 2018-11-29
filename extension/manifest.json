@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "Streak Texting",
   "description": "Send personalized messages to all rows checked in Streak",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "browser_action": {
     "default_title": "Streak Texting",
     "default_popup": "popup.html"

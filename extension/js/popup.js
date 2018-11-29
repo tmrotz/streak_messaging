@@ -6,7 +6,7 @@ const VALID_VALUES = [
   'last_name',
 ];
 const SECOND = 1000;
-let TEXT_AREA_VALUE = '';
+let MESSAGE_VALUE = '';
 const TEXT_COMMAND = 'text';
 const PEEPS_COMMAND = 'get_peeps';
 let CURSOR_POS = -1;
@@ -40,27 +40,39 @@ function notify(title, icon, body, time) {
 
 
 function insertText(text) {
-  if (CURSOR_POS > -1) {
-    const text_area = document.getElementById('text_area');
-  
-    let startPos = text_area.selectionStart;
-    let endPos = text_area.selectionEnd;
-  
-    CURSOR_POS = endPos + text_area.value.length;
-  
-    text_area.value = text_area.value.substring(0, startPos)
-        + text
-        + text_area.value.substring(endPos, text_area.value.length);
-  
-    chrome.storage.local.set({'text_area_value': text_area.value}, () => {
-      text_area.focus();
-      text_area.setSelectionRange(CURSOR_POS, CURSOR_POS);
-    });
+  const message_element = document.getElementById('message');
+
+  let startPos = message_element.selectionStart;
+  let endPos = message_element.selectionEnd;
+
+  const first_half = message_element.value.substring(0, startPos);
+  const second_half = message_element.value.substring(endPos, message_element.value.length);
+
+  message_element.value = first_half + text + second_half;
+
+  message_element.focus();
+
+  if (startPos === endPos) {
+    message_element.setSelectionRange(first_half.length + text.length, first_half.length + text.length);
+  } else {
+    message_element.setSelectionRange(first_half.length, first_half.length + text.length);
   }
 }
 
 
+function updateMessage() {
+  const message_element = document.getElementById('message');
+
+  chrome.storage.local.set({ 'text_area_value': message_element.value }, () => {
+    MESSAGE_VALUE = message_element.value;
+    notifySuccess('Message successfully updated!');
+  });
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
+  document.querySelector('#updateMessage').addEventListener('click', updateMessage);
+
   document.getElementById('district').addEventListener('click', () => {
     insertText('${district}');
   });
@@ -73,23 +85,12 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('last').addEventListener('click', () => {
     insertText('${last_name}');
   });
-  
-  const text_area = document.getElementById('text_area');
-  text_area.addEventListener('focusout', () => {
-    CURSOR_POS = document.getElementById('text_area').selectionEnd;
-  });
-  text_area.addEventListener('keypress', () => {
-    const text_area = document.getElementById('text_area');
-    chrome.storage.local.set({ 'text_area_value': text_area.value }, () => {
-      TEXT_AREA_VALUE = text_area.value;
-    });
-  });
-  
+
   chrome.storage.local.get('text_area_value', items => {
     if (items.hasOwnProperty('text_area_value')) {
-      const text_area = document.getElementById('text_area');
-      TEXT_AREA_VALUE = items.text_area_value;
-      text_area.value = TEXT_AREA_VALUE;
+      const message = document.getElementById('message');
+      MESSAGE_VALUE = items.text_area_value;
+      message.value = MESSAGE_VALUE;
     }
   });
 });
