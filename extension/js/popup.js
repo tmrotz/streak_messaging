@@ -9,7 +9,7 @@ const SECOND = 1000;
 let MESSAGE_VALUE = '';
 const TEXT_COMMAND = 'text';
 const PEEPS_COMMAND = 'get_peeps';
-let CURSOR_POS = -1;
+let TEXT_COUNT = 0;
 
 
 function notifyNotice(body, time) {
@@ -70,6 +70,18 @@ function updateMessage() {
 }
 
 
+/**
+ * Reset Counters
+ */
+function resetCounters() {
+  chrome.storage.local.set({ 'text_count': 0 }, () => {
+    TEXT_COUNT = 0;
+    document.getElementById('text_count').innerText = '0';
+    notifySuccess('Text Counter Reset To 0', 5);
+  });
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('#updateMessage').addEventListener('click', updateMessage);
 
@@ -93,4 +105,18 @@ document.addEventListener('DOMContentLoaded', () => {
       message.value = MESSAGE_VALUE;
     }
   });
+
+  chrome.storage.local.get('text_count', items => {
+    if (items.hasOwnProperty('text_count')) {
+      TEXT_COUNT = items['text_count'];
+      document.getElementById('text_count').innerText = TEXT_COUNT;
+
+    } else {
+      chrome.storage.local.set({ 'text_count': 0 }, () => {
+        TEXT_COUNT = 0;
+      });
+    }
+  });
+
+  document.getElementById('reset_counters').addEventListener('click', resetCounters);
 });

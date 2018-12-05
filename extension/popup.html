@@ -13,6 +13,12 @@
       background-color: cornflowerblue;
       color: #f7f7f7;
     }
+
+    .counters {
+      border: 1px solid black;
+      padding-left: 1px;
+      padding-right: 1px;
+    }
   </style>
 </head>
 
@@ -20,6 +26,7 @@
 
 <div>
   <label for="message">Text</label>
+  <div id="text_count" class="counters" style="float: right;">0</div>
   <textarea id="message" name="message" cols="50" rows="10"></textarea>
 </div>
 
@@ -37,6 +44,12 @@
     <button id="first">     First Name</button>
     <button id="last">      Last Name</button>
   </div>
+</div>
+
+<br>
+
+<div>
+  <input id="reset_counters" type="button" value="Reset Counters">
 </div>
 
 
