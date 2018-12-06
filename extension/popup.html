@@ -9,7 +9,7 @@
       background-color: #f8f3e0;
     }
 
-    #streak_voice_texts {
+    .blue_button {
       background-color: cornflowerblue;
       color: #f7f7f7;
     }
@@ -18,6 +18,10 @@
       border: 1px solid black;
       padding-left: 1px;
       padding-right: 1px;
+    }
+
+    .display_none {
+      display: none;
     }
   </style>
 </head>
@@ -31,7 +35,7 @@
 </div>
 
 <div>
-  <button id="streak_voice_texts">Send Texts</button>
+  <button id="streak_voice_texts" class="blue_button">Send Texts</button>
   <button id="updateMessage">Update Message</button>
 </div>
 
@@ -43,6 +47,26 @@
     <button id="title">     Title</button>
     <button id="first">     First Name</button>
     <button id="last">      Last Name</button>
+  </div>
+</div>
+
+<br>
+
+<div>
+  <input type="checkbox" id="send_two_texts" name="send_two_texts">
+  <label for="send_two_texts">Send 2 Texts</label>
+</div>
+
+<br>
+
+<div id="2nd_text_section" class="display_none">
+  <div>
+    <label for="message_2">2nd Text</label>
+    <textarea id="message_2" name="message_2" cols="50" rows="5"></textarea>
+  </div>
+
+  <div>
+    <button id="streak_voice_text_2" class="blue_button">Send 2 Texts</button>
   </div>
 </div>
 

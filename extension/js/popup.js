@@ -118,5 +118,18 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
+
+  const second_text_section = document.getElementById('2nd_text_section');
+  const show_2nd_text = document.getElementById('send_two_texts');
+
+  show_2nd_text.onchange = function() {
+    if (show_2nd_text.checked) {
+      second_text_section.classList.remove('display_none');
+    } else {
+      second_text_section.classList.add('display_none');
+    }
+  }
+
+
   document.getElementById('reset_counters').addEventListener('click', resetCounters);
 });
